@@ -15,6 +15,7 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:letterSpacing="0.05"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,9 +27,9 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
         android:layout_marginTop="50dp"
-        android:text="Button"
+        android:text="Generate word"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/randomWord" />
 
@@ -41,6 +42,7 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="text"
+        android:maxLength="1"
         app:layout_constraintEnd_toStartOf="@+id/checkLetterButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -49,9 +51,32 @@
         android:id="@+id/checkLetterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="100dp"
-        android:text="Button"
+        android:text="Guess"
         app:layout_constraintStart_toEndOf="@+id/letterInput"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/lifePoints"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:isScrollContainer="false"
+        android:text="7"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/restartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:text="Restart"
+        app:layout_constraintStart_toEndOf="@+id/checkLetterButton"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
