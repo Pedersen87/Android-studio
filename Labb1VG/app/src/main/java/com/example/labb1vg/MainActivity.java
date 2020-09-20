@@ -68,36 +68,38 @@ public class MainActivity extends AppCompatActivity {
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            if(numOne.getText().length() != 0 && numTwo.getText().length() != 0){
                 if(operation == '+'){
-                    int nOne = Integer.parseInt(numOne.getText().toString());
-                    int nTwo = Integer.parseInt(numTwo.getText().toString());
-                    int res = nOne + nTwo;
-                    sum.setText(Integer.toString(res));
+                    double nOne = Double.parseDouble(numOne.getText().toString());
+                    double nTwo = Double.parseDouble(numTwo.getText().toString());
+                    double res = nOne + nTwo;
+                    sum.setText(Double.toString(res));
                 }
                 if(operation == '-'){
-                    int nOne = Integer.parseInt(numOne.getText().toString());
-                    int nTwo = Integer.parseInt(numTwo.getText().toString());
-                    int res = nOne - nTwo;
-                    sum.setText(Integer.toString(res));
+                    double nOne = Double.parseDouble(numOne.getText().toString());
+                    double nTwo = Double.parseDouble(numTwo.getText().toString());
+                    double res = nOne - nTwo;
+                    sum.setText(Double.toString(res));
                 }
                 if(operation == '*'){
-                    int nOne = Integer.parseInt(numOne.getText().toString());
-                    int nTwo = Integer.parseInt(numTwo.getText().toString());
-                    int res = nOne * nTwo;
-                    sum.setText(Integer.toString(res));
+                    double nOne = Double.parseDouble(numOne.getText().toString());
+                    double nTwo = Double.parseDouble(numTwo.getText().toString());
+                    double res = nOne * nTwo;
+                    sum.setText(Double.toString(res));
                 }
                 if(operation == '/'){
-                    int nOne = Integer.parseInt(numOne.getText().toString());
-                    int nTwo = Integer.parseInt(numTwo.getText().toString());
+                    double nOne = Double.parseDouble(numOne.getText().toString());
+                    double nTwo = Double.parseDouble(numTwo.getText().toString());
                     if(nTwo==0){
                         Toast.makeText(getApplicationContext(), "Error!!", Toast.LENGTH_SHORT)
                                 .show();
                     }
                     else{
-                        int res = nOne / nTwo;
-                        sum.setText(Integer.toString(res));
+                        double res = nOne / nTwo;
+                        sum.setText(Double.toString(res));
                     }
                 }
+            }
             }
         });
         //Metod för att rensa fält
