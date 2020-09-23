@@ -3,26 +3,18 @@ package com.example.labb2g;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
-
 public class MainActivity extends AppCompatActivity {
 
-    //ArrayList<String> words = new ArrayList<>();
     TextView lifePoints;
     EditText randWord, lInput;
-    String word, underscore;
+    String underscore;
     ImageView hangMan;
     Button wordButton, letterButton, restartButton;
     int counter = 7;
@@ -35,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(getApplicationContext(), myWordlist.test, Toast.LENGTH_LONG).show();
-        myWordlist.wordlibraryMethod();
         randWord = (EditText) findViewById(R.id.randomWord);
         wordButton = (Button) findViewById(R.id.button);
         lInput = (EditText) findViewById(R.id.letterInput);
@@ -68,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
         public void restartMethod(){
             randWord.setText("");
@@ -82,21 +70,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void generatewordMethod(){
-            Collections.shuffle(myWordlist.words);
-            word = myWordlist.words.get(0);
-
-           // Collections.shuffle(words);
-           // word = words.get(0);
-            underscore = word.replaceAll(".", "_");
+            myWordlist.wordlibraryMethod();
+            underscore = myWordlist.word.replaceAll(".", "_");
             randWord.setText(underscore);
             letterButton.setVisibility(View.VISIBLE);
-
         }
 
         public void inputMethod(){
-            for (int i = 0; i < word.length(); i++) {
+            for (int i = 0; i < myWordlist.word.length(); i++) {
                 char dash[] = underscore.toCharArray();
-                if (word.charAt(i) == lInput.getText().charAt(0)) {
+                if (myWordlist.word.charAt(i) == lInput.getText().charAt(0)) {
                     dash[i] = lInput.getText().charAt(0);
                     underscore = String.valueOf(dash);
                     randWord.setText(underscore);
@@ -134,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "To start a new game, press restart!", Toast.LENGTH_LONG).show();
                 wordButton.setVisibility(View.INVISIBLE);
                 letterButton.setVisibility(View.INVISIBLE);
-
             }
             if(counter <= 0){
                 Toast.makeText(getApplicationContext(), "Looser!", Toast.LENGTH_LONG).show();
@@ -144,13 +126,4 @@ public class MainActivity extends AppCompatActivity {
             }
             check = false;
         }
-
-        /*public void wordlibraryMethod(){
-            words.add("monkey");
-            words.add("banana");
-            words.add("moose");
-            words.add("motorcycle");
-            words.add("computer");
-            words.add("purple");
-        }*/
 }

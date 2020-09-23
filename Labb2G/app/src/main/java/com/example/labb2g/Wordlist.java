@@ -1,15 +1,12 @@
 package com.example.labb2g;
 
-import android.widget.Toast;
-
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Wordlist {
-    String test = "WordListclass";
-
-    //Nedanstående test
     ArrayList<String> words = new ArrayList<>();
-
+    String word;
+//Lägg till randommetod
     public void wordlibraryMethod(){
         words.add("monkey");
         words.add("banana");
@@ -17,5 +14,7 @@ public class Wordlist {
         words.add("motorcycle");
         words.add("computer");
         words.add("purple");
+        Collections.shuffle(words); //test
+        word = words.get(0);
     }
 }
