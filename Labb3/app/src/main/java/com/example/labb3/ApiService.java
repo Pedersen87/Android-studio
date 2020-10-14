@@ -1,6 +1,7 @@
 package com.example.labb3;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -13,14 +14,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ApiService extends AsyncTask<String, Void, String> {
+public class ApiService extends AsyncTask<ArrayList<String>, Void, ArrayList<String>> {
     private ArrayList<String> list = new ArrayList<>();
     private String getSimilar;
     private String artistInput;
+    private Context c;
     MainActivity m = new MainActivity();
 
-        public ApiService(String artistInput){
+        public ApiService(String artistInput, Context cIn){
                 this.artistInput = artistInput;
+                this.c = cIn;
         }
 
         public void setArtistInput(String artistInput){
@@ -32,10 +35,10 @@ public class ApiService extends AsyncTask<String, Void, String> {
         }
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected ArrayList<String> doInBackground(ArrayList<String>... p) {
 
             String artistSearch = getArtistInput();
-            list = new ArrayList<>();
+            list = new ArrayList();
             URL url;
             for(int i =0; i<1; i++){
                 try{
@@ -64,17 +67,21 @@ public class ApiService extends AsyncTask<String, Void, String> {
                     e.printStackTrace();
                 }
             }
-            return null;
+            return list;
         }
+
+
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(ArrayList<String> list) {
+        super.onPostExecute(list);
+        Intent back = new Intent(c, MainActivity.class);
+        back.putStringArrayListExtra("similarartist", list);
+        back.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        c.startActivity(back);
+
         System.out.println("Liknande artister: " + Arrays.toString(list.toArray()));
 
-        /* listAdapter = new ArrayAdapter<String>(MainActivity.this,
-                android.R.layout.simple_list_item_1, list);
-        ListView listView = (ListView) (findViewById(R.id.listArtist));
-        listView.setAdapter(listAdapter);*/
-        super.onPostExecute(s);
     }
-    }
+
+}
 
